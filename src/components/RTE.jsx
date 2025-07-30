@@ -8,7 +8,7 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
     <div className="w-full mb-6">
       {label && (
         <label
-          className="block mb-2 text-sm font-medium text-gray-700 tracking-wide"
+          className="block mb-2 text-sm sm:text-base font-medium text-gray-700 tracking-wide"
         >
           {label}
         </label>
@@ -23,34 +23,33 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
               apiKey="73znz2sxqmnt1h7yyh5esec106s0ihrpyckw2fpddmjrtyex"
               initialValue={defaultValue}
               init={{
-                height: 500,
-                menubar: true,
-                skin: "oxide-dark", // ✨ sleek dark toolbar (you can remove if you prefer default)
-                content_css: "dark", // ✨ makes the editor content dark-themed
+                height: 400,
+                menubar: false, // Hide menubar on mobile for better UX
+                skin: "oxide-dark",
+                content_css: "dark",
                 plugins: [
-                  "advlist",
-                  "autolink",
-                  "lists",
-                  "link",
-                  "image",
-                  "charmap",
-                  "preview",
-                  "anchor",
-                  "searchreplace",
-                  "visualblocks",
-                  "code",
-                  "fullscreen",
-                  "insertdatetime",
-                  "media",
-                  "table",
-                  "wordcount",
+                  "advlist", "autolink", "lists", "link", "image", "charmap",
+                  "preview", "anchor", "searchreplace", "visualblocks", "code",
+                  "fullscreen", "insertdatetime", "media", "table", "wordcount",
                 ],
-                toolbar:
-                  "undo redo | blocks | bold italic underline | forecolor backcolor | " +
-                  "alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | " +
-                  "link image media | code fullscreen preview",
+                toolbar: [
+                  "undo redo | bold italic underline | forecolor backcolor",
+                  "alignleft aligncenter alignright | bullist numlist",
+                  "link image media | code fullscreen preview"
+                ].join(" | "),
                 content_style:
                   "body { font-family:Helvetica,Arial,sans-serif; font-size:14px; padding:10px; background-color:#fff; }",
+                // Mobile-friendly settings
+                mobile: {
+                  theme: 'silver',
+                  plugins: ['lists', 'autolink', 'link', 'image'],
+                  toolbar: 'bold italic | bullist numlist | link image'
+                },
+                // Responsive settings
+                width: '100%',
+                min_height: 300,
+                max_height: 600,
+                resize: true,
               }}
               onEditorChange={onChange}
             />

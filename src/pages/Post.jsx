@@ -39,32 +39,32 @@ export default function Post() {
   };
 
   return post ? (
-    <div className="py-8 bg-gray-50 min-h-screen">
+    <div className="py-6 sm:py-8 lg:py-12 xl:py-16 bg-white">
       <Container>
         {/* Featured Image Section */}
-        <div className="w-full flex justify-center mb-6 relative border rounded-xl p-4 bg-white shadow">
+        <div className="w-full flex justify-center mb-6 sm:mb-8 relative border rounded-xl p-4 sm:p-6 bg-white shadow-sm">
           {post.featuredimage ? (
             <img
               src={appwriteService.getFilePreview(post.featuredimage)}
               alt={post.title}
-              className="rounded-xl max-h-[400px] object-contain"
+              className="rounded-xl max-h-[300px] sm:max-h-[400px] object-contain w-full"
             />
           ) : (
-            <div className="w-full h-64 bg-gray-200 flex items-center justify-center rounded-xl">
-              <span className="text-gray-500 text-lg">No image available</span>
+            <div className="w-full h-48 sm:h-64 bg-gray-100 flex items-center justify-center rounded-xl">
+              <span className="text-gray-500 text-base sm:text-lg">No image available</span>
             </div>
           )}
 
           {isAuthor && (
-            <div className="absolute right-6 top-6 flex gap-3">
+            <div className="absolute right-4 sm:right-6 top-4 sm:top-6 flex flex-col sm:flex-row gap-2 sm:gap-3">
               <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="px-4 py-2">
+                <Button bgColor="bg-green-500" className="px-3 sm:px-4 py-2 text-sm sm:text-base">
                   Edit
                 </Button>
               </Link>
               <Button
                 bgColor="bg-red-500"
-                className="px-4 py-2"
+                className="px-3 sm:px-4 py-2 text-sm sm:text-base"
                 onClick={deletePost}
               >
                 Delete
@@ -73,11 +73,15 @@ export default function Post() {
           )}
         </div>
         
-        <div className="w-full mb-6 text-center">
-          <h1 className="text-3xl font-bold text-gray-800">{post.title}</h1>
+        <div className="w-full mb-6 sm:mb-8 text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
+            {post.title}
+          </h1>
         </div>
 
-        <div className="prose max-w-none prose-lg">{parse(post.content)}</div>
+        <div className="prose max-w-none prose-sm sm:prose-base lg:prose-lg prose-headings:text-gray-800 prose-p:text-gray-600 prose-a:text-purple-600">
+          {parse(post.content)}
+        </div>
       </Container>
     </div>
   ) : null;

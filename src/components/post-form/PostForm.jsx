@@ -88,8 +88,9 @@ export default function PostForm({ post }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-col lg:flex-row gap-6">
+      {/* Main Content Section */}
+      <div className="w-full lg:w-2/3">
         <Input
           label="Title :"
           placeholder="Title"
@@ -115,7 +116,8 @@ export default function PostForm({ post }) {
         />
       </div>
 
-      <div className="w-1/3 px-2">
+      {/* Sidebar Section */}
+      <div className="w-full lg:w-1/3">
         <Input
           label="Featured Image :"
           type="file"
@@ -126,11 +128,10 @@ export default function PostForm({ post }) {
 
         {post && post.featuredimage && (
           <div className="w-full mb-4">
-            {/* use getFileView here */}
             <img
               src={appwriteService.getFilePreview(post.featuredimage)}
               alt={post.title}
-              className="rounded-lg max-h-[200px] object-contain"
+              className="rounded-lg max-h-[200px] object-contain w-full"
             />
           </div>
         )}
