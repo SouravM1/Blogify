@@ -34,10 +34,10 @@ function Home() {
           }}></div>
           
           <Container>
-            <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
+            <div className="relative z-10 text-center max-w-6xl mx-auto">
               {/* Main Hero Content */}
-              <div className="mb-16">
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent leading-none mb-6">
+              <div className="mb-16 pt-8 sm:pt-12 md:pt-16 lg:pt-20">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent leading-tight mb-6 px-4">
                   Blogify
                 </h1>
                 <p className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-8 max-w-3xl mx-auto">
