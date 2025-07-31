@@ -5,6 +5,7 @@ import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { markdownToHtml, isMarkdown } from "../../utils/contentRenderer";
 
 export default function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
@@ -64,11 +65,17 @@ export default function PostForm({ post }) {
       }
     }
 
+    // Process content - convert Markdown to HTML if needed
+    let processedContent = data.content || "";
+    if (isMarkdown(processedContent)) {
+      processedContent = markdownToHtml(processedContent);
+    }
+
     // Update or Create post
     if (post) {
       const dbPost = await appwriteService.updatePost(post.$id, {
         title: data.title,
-        content: data.content || "",
+        content: processedContent,
         featuredimage: fileId,
         status: data.status,
       });
@@ -77,7 +84,7 @@ export default function PostForm({ post }) {
       const payload = {
         title: data.title,
         slug: data.slug,
-        content: data.content || "",
+        content: processedContent,
         status: data.status,
         featuredimage: fileId,
         userid: userData.$id,

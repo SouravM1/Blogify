@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/config";
 import { Button, Container } from "../components";
-import parse from "html-react-parser";
+import { renderContent } from "../utils/contentRenderer";
 import { useSelector } from "react-redux";
 
 export default function Post() {
@@ -80,7 +80,7 @@ export default function Post() {
         </div>
 
         <div className="prose max-w-none prose-sm sm:prose-base lg:prose-lg prose-headings:text-gray-800 prose-p:text-gray-600 prose-a:text-purple-600">
-          {parse(post.content)}
+          {renderContent(post.content)}
         </div>
       </Container>
     </div>
